@@ -11,9 +11,9 @@ class AppThemeData {
         backgroundColor: AppColors.themeColor,
         foregroundColor: Colors.white,
         fixedSize: const Size.fromWidth(double.maxFinite),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-        textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        padding: const EdgeInsets.symmetric(vertical: 14),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
@@ -26,15 +26,15 @@ class AppThemeData {
       ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(99),
-        borderSide: BorderSide.none
+        borderSide: BorderSide.none,
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(99),
-        borderSide: BorderSide.none
+        borderSide: BorderSide.none,
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(99),
-        borderSide: BorderSide.none
+        borderSide: BorderSide.none,
       ),
       prefixIconColor: Colors.grey.shade600,
     ),

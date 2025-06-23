@@ -38,6 +38,8 @@ dependencies:
   get:
   cached_network_image:
   carousel_slider:
+  flutter_svg: ^2.2.0
+  stylish_bottom_bar: ^1.1.1
 
 dev_dependencies:
   flutter_test:

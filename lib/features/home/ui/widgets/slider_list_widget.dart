@@ -28,31 +28,34 @@ class _SliderListWidgetState extends State<SliderListWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CarouselSlider.builder(
-          itemCount: imageUrls.length,
-          itemBuilder: (context, index, realIndex) {
-            return Padding(
-              padding: const EdgeInsets.only(right: 12),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: Image.network(
-                  imageUrls[index],
-                  fit: BoxFit.cover,
-                  width: double.infinity,
+        Padding(
+          padding: const EdgeInsets.only(left: 24),
+          child: CarouselSlider.builder(
+            itemCount: imageUrls.length,
+            itemBuilder: (context, index, realIndex) {
+              return Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.network(
+                    imageUrls[index],
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                  ),
                 ),
-              ),
-            );
-          },
-          options: CarouselOptions(
-            height: 150,
-            autoPlay: true,
-            viewportFraction: 0.9,
-            enlargeCenterPage: false,
-            enableInfiniteScroll: true,
-            padEnds: false,
-            onPageChanged: (index, reason) {
-              _selectedIndex.value = index;
+              );
             },
+            options: CarouselOptions(
+              height: 150,
+              autoPlay: true,
+              viewportFraction: 0.9,
+              enlargeCenterPage: false,
+              enableInfiniteScroll: true,
+              padEnds: false,
+              onPageChanged: (index, reason) {
+                _selectedIndex.value = index;
+              },
+            ),
           ),
         ),
         const SizedBox(height: 12),

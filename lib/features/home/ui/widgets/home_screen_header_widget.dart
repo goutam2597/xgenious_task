@@ -1,12 +1,10 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../app/app_colors.dart';
 
 class HomeScreenHeaderWidget extends StatelessWidget {
-  const HomeScreenHeaderWidget({
-    super.key,
-  });
+  const HomeScreenHeaderWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +28,8 @@ class HomeScreenHeaderWidget extends StatelessWidget {
                 SizedBox(height: 28),
                 Row(
                   children: [
-                    Image.asset(
-                      'assets/images/home.png',
+                    SvgPicture.asset(
+                      'assets/images/home-03.svg',
                       height: 24,
                       width: 24,
                     ),
@@ -57,7 +55,7 @@ class HomeScreenHeaderWidget extends StatelessWidget {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            SizedBox(width: 4,),
+                            SizedBox(width: 4),
                             Icon(
                               Icons.keyboard_arrow_down_sharp,
                               size: 18,
@@ -126,7 +124,21 @@ class HomeScreenHeaderWidget extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 16),
-                TextFormField(decoration: InputDecoration()),
+                TextField(
+                  decoration: InputDecoration(
+                    filled: true,
+                    prefixIcon: Icon(Icons.search, color: AppColors.fillColor,size: 30,),
+                    suffixIcon: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(height: 24,width: 1.5,color: AppColors.fillColor,),
+                        SizedBox(width: 4,),
+                        SvgPicture.asset('assets/images/filter.svg'),
+                        SizedBox(width: 16,),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
