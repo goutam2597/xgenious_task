@@ -37,7 +37,7 @@ dependencies:
   http:
   get:
   cached_network_image:
-  carousel_slider:
+  carousel_slider: ^5.1.1
   flutter_svg: ^2.2.0
   stylish_bottom_bar: ^1.1.1
 

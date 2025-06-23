@@ -1,89 +1,65 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import '../../../../app/app_colors.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import '../../data/models/slider_list_model.dart';
 
 class SliderListWidget extends StatefulWidget {
-  const SliderListWidget({super.key});
+  final List<SliderListModel> sliders;
+
+  const SliderListWidget({super.key, required this.sliders});
 
   @override
   State<SliderListWidget> createState() => _SliderListWidgetState();
 }
 
 class _SliderListWidgetState extends State<SliderListWidget> {
-  final List<String> imageUrls = [
-    'https://prohandy.xgenious.com/assets/uploads/media-uploader/frame-377341738235271.png',
-    'https://prohandy.xgenious.com/assets/uploads/media-uploader/frame-377341738235271.png',
-    'https://prohandy.xgenious.com/assets/uploads/media-uploader/frame-377341738235271.png',
-  ];
-
-  final ValueNotifier<int> _selectedIndex = ValueNotifier<int>(0);
-
-  @override
-  void dispose() {
-    _selectedIndex.dispose();
-    super.dispose();
-  }
+  int _currentIndex = 0;
+  final CarouselSliderController _carouselController =
+      CarouselSliderController();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 24),
-          child: CarouselSlider.builder(
-            itemCount: imageUrls.length,
-            itemBuilder: (context, index, realIndex) {
-              return Padding(
-                padding: const EdgeInsets.only(right: 12),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Image.network(
-                    imageUrls[index],
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                  ),
-                ),
-              );
+        CarouselSlider(
+          carouselController: _carouselController,
+          options: CarouselOptions(
+            height: 160.0,
+            viewportFraction: 1,
+            autoPlay: true,
+            onPageChanged: (index, reason) {
+              setState(() {
+                _currentIndex = index;
+              });
             },
-            options: CarouselOptions(
-              height: 150,
-              autoPlay: true,
-              viewportFraction: 0.9,
-              enlargeCenterPage: false,
-              enableInfiniteScroll: true,
-              padEnds: false,
-              onPageChanged: (index, reason) {
-                _selectedIndex.value = index;
-              },
-            ),
           ),
+          items: widget.sliders.map((s) {
+            return ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                s.image,
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
+            );
+          }).toList(),
         ),
         const SizedBox(height: 12),
-        ValueListenableBuilder<int>(
-          valueListenable: _selectedIndex,
-          builder: (context, value, _) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                for (int i = 0; i < imageUrls.length; i++)
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    width: value == i ? 24 : 10,
-                    height: 10,
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
-                    decoration: BoxDecoration(
-                      color: value == i
-                          ? AppColors.themeColor
-                          : AppColors.dotsColor,
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: AppColors.dotsColor),
-                    ),
-                  ),
-              ],
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: widget.sliders.asMap().entries.map((entry) {
+            bool isActive = _currentIndex == entry.key;
+            return AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              margin: const EdgeInsets.symmetric(horizontal: 4.0),
+              width: isActive ? 20.0 : 8.0,
+              height: 8.0,
+              decoration: BoxDecoration(
+                color: isActive ? Colors.blue : Colors.grey.shade300,
+                borderRadius: BorderRadius.circular(20),
+              ),
             );
-          },
-        )
-
+          }).toList(),
+        ),
       ],
     );
   }

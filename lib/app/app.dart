@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:xgenious_task/app/app_theme_data.dart';
 
 import '../features/home/ui/screens/bottom_nav_bar.dart';
@@ -8,7 +9,7 @@ class TaskApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: AppThemeData.lightTheme,
       home: BottomNavBar()
     );
