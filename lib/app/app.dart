@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xgenious_task/app/app_theme_data.dart';
+import 'package:xgenious_task/features/home/ui/screens/splash_screen.dart';
 
 import '../features/home/ui/screens/bottom_nav_bar.dart';
 
@@ -13,7 +14,7 @@ class TaskApp extends StatelessWidget {
     return GetMaterialApp(
 
       theme: AppThemeData.lightTheme,
-      home: BottomNavBar(),
+      home: SplashScreen(),
     );
   }
 }
