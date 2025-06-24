@@ -55,11 +55,8 @@ dependencies:
 
 ## 🌐 API Endpoints
 
-- `https://prohandy.xgenious.com/api/v1/slider-lists`
-- `https://prohandy.xgenious.com/api/v1/categories`
-- `https://prohandy.xgenious.com/api/v1/featured-services`
-- `https://prohandy.xgenious.com/api/v1/providers`
+- Featured Services: https://prohandy.xgenious.com/api/v1/service/featured
+- Provider List: https://prohandy.xgenious.com/api/v1/provider-lists
+- Slider List: https://prohandy.xgenious.com/api/v1/slider-lists
+- Categories: https://prohandy.xgenious.com/api/v1/categories
 
-## 📄 License
-
-This project is licensed for demonstration and educational purposes only.
