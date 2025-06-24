@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../../app/app_colors.dart';
 
+/// A custom header widget for the home screen that includes:
+/// - Gradient background
+/// - Location info
+/// - Notification and cart icons
+/// - Search bar with filter
+/// - Decorative shapes
 class HomeScreenHeaderWidget extends StatelessWidget {
   const HomeScreenHeaderWidget({super.key});
 
@@ -11,6 +16,7 @@ class HomeScreenHeaderWidget extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
+        /// Main header container with gradient background
         Container(
           height: 187,
           decoration: BoxDecoration(
@@ -25,7 +31,9 @@ class HomeScreenHeaderWidget extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 28),
+                const SizedBox(height: 28),
+
+                /// Top row with location info, notifications, and cart
                 Row(
                   children: [
                     SvgPicture.asset(
@@ -33,11 +41,11 @@ class HomeScreenHeaderWidget extends StatelessWidget {
                       height: 24,
                       width: 24,
                     ),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Home',
                           style: TextStyle(
                             fontSize: 16,
@@ -46,7 +54,7 @@ class HomeScreenHeaderWidget extends StatelessWidget {
                           ),
                         ),
                         Row(
-                          children: [
+                          children: const [
                             Text(
                               '264 Boncycle, FL 32328',
                               style: TextStyle(
@@ -65,7 +73,9 @@ class HomeScreenHeaderWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
+
+                    /// Notification icon with badge
                     Stack(
                       clipBehavior: Clip.none,
                       children: [
@@ -76,7 +86,7 @@ class HomeScreenHeaderWidget extends StatelessWidget {
                             color: Colors.white,
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.notifications_none,
                             color: AppColors.fillColor,
                           ),
@@ -108,7 +118,9 @@ class HomeScreenHeaderWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
+
+                    /// Cart icon
                     Container(
                       height: 40,
                       width: 40,
@@ -116,25 +128,36 @@ class HomeScreenHeaderWidget extends StatelessWidget {
                         color: Colors.white,
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.shopping_cart,
                         color: AppColors.fillColor,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 16),
+
+                const SizedBox(height: 16),
+
+                /// Search field with filter icon
                 TextField(
                   decoration: InputDecoration(
                     filled: true,
-                    prefixIcon: Icon(Icons.search, color: AppColors.fillColor,size: 30,),
+                    prefixIcon: const Icon(
+                      Icons.search,
+                      color: AppColors.fillColor,
+                      size: 30,
+                    ),
                     suffixIcon: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Container(height: 24,width: 1.5,color: AppColors.fillColor,),
-                        SizedBox(width: 4,),
+                        Container(
+                          height: 24,
+                          width: 1.5,
+                          color: AppColors.fillColor,
+                        ),
+                        const SizedBox(width: 4),
                         SvgPicture.asset('assets/images/filter.svg'),
-                        SizedBox(width: 16,),
+                        const SizedBox(width: 16),
                       ],
                     ),
                   ),
@@ -143,6 +166,8 @@ class HomeScreenHeaderWidget extends StatelessWidget {
             ),
           ),
         ),
+
+        /// Top decorative shapes overlaid using Positioned widget
         Positioned(
           top: 0,
           left: 0,

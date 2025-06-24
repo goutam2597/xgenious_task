@@ -1,3 +1,4 @@
+/// Model class representing a featured service item
 class FeaturedServiceModel {
   final int id;
   final String title;
@@ -9,6 +10,7 @@ class FeaturedServiceModel {
   final String? providerName;
   final String? providerImage;
 
+  /// Constructor for initializing a FeaturedServiceModel instance
   FeaturedServiceModel({
     required this.id,
     required this.title,
@@ -21,6 +23,7 @@ class FeaturedServiceModel {
     this.providerImage,
   });
 
+  /// Factory constructor to create a FeaturedServiceModel from JSON data
   factory FeaturedServiceModel.fromJson(Map<String, dynamic> json) {
     final provider = json['provider'];
     final admin = json['admin'];
@@ -31,7 +34,8 @@ class FeaturedServiceModel {
       image: json['image'] ?? '',
       price: json['price'] ?? 0,
       discountPrice: json['discount_price'] ?? 0,
-      rating: double.tryParse(json['average_rating']?.toString() ?? '0.0') ?? 0.0,
+      rating:
+          double.tryParse(json['average_rating']?.toString() ?? '0.0') ?? 0.0,
       category: json['category']?['name'] ?? '',
       providerName: provider != null
           ? provider['full_name']

@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../../data/models/slider_list_model.dart';
 
+/// A widget that displays a carousel slider of images
 class SliderListWidget extends StatefulWidget {
   final List<SliderListModel> sliders;
 
@@ -13,6 +15,7 @@ class SliderListWidget extends StatefulWidget {
 
 class _SliderListWidgetState extends State<SliderListWidget> {
   int _currentIndex = 0;
+
   final CarouselSliderController _carouselController =
       CarouselSliderController();
 
@@ -20,6 +23,7 @@ class _SliderListWidgetState extends State<SliderListWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        /// Carousel slider widget
         CarouselSlider(
           carouselController: _carouselController,
           options: CarouselOptions(
@@ -35,15 +39,18 @@ class _SliderListWidgetState extends State<SliderListWidget> {
           items: widget.sliders.map((s) {
             return ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                s.image,
+              child: CachedNetworkImage(
+                imageUrl: s.image,
                 fit: BoxFit.cover,
                 width: double.infinity,
               ),
             );
           }).toList(),
         ),
+
         const SizedBox(height: 12),
+
+        /// Dot indicators below the slider
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: widget.sliders.asMap().entries.map((entry) {

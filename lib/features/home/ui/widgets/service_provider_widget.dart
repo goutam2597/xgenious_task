@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:xgenious_task/app/app_colors.dart';
-
 import '../../data/models/service_provider_model.dart';
 
+/// A widget that displays a single service provider card with avatar,
 class ServiceProviderWidget extends StatelessWidget {
   final ServiceProviderModel provider;
+
   const ServiceProviderWidget({super.key, required this.provider});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8),
+      padding: const EdgeInsets.only(right: 16),
       child: Container(
         height: 140,
         width: 140,
@@ -22,17 +24,19 @@ class ServiceProviderWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            /// Profile image with rating badge below
             Stack(
               clipBehavior: Clip.none,
               children: [
                 CircleAvatar(
                   radius: 32,
                   backgroundImage: provider.image != null
-                      ? NetworkImage(provider.image!)
-                      : const AssetImage('assets/images/placeholder_img.png') as ImageProvider,
+                      ? CachedNetworkImageProvider(provider.image!)
+                      : const AssetImage('assets/images/placeholder_img.png')
+                  as ImageProvider,
                 ),
                 Positioned(
-                  bottom: -4, // places the badge below the circle
+                  bottom: -4,
                   left: 0,
                   right: 0,
                   child: Center(
@@ -47,10 +51,10 @@ class ServiceProviderWidget extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.star, size: 16, color: Colors.orange),
+                          const Icon(Icons.star, size: 16, color: Colors.orange),
                           Text(
                             provider.rating.toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
                               color: Colors.orange,
@@ -63,9 +67,18 @@ class ServiceProviderWidget extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 12),
-            Text(provider.name, style: TextStyle(fontWeight: FontWeight.w600)),
-            SizedBox(height: 4),
+
+            const SizedBox(height: 12),
+
+            /// Provider name
+            Text(
+              provider.name,
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+
+            const SizedBox(height: 4),
+
+            /// Service categories
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
@@ -73,10 +86,12 @@ class ServiceProviderWidget extends StatelessWidget {
                 provider.serviceCategories.isNotEmpty
                     ? provider.serviceCategories.map((e) => e.name).join(', ')
                     : 'Unknown',
-                style: TextStyle(color: AppColors.subColor,overflow: TextOverflow.ellipsis),
+                style: const TextStyle(
+                  color: AppColors.subColor,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
-
           ],
         ),
       ),

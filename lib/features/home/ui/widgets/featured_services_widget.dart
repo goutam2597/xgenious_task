@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:xgenious_task/features/home/data/models/featured_service_model.dart';
 
 import '../../../../app/app_colors.dart';
+
+/// A widget that displays a card-style featured service with image,
 
 class FeaturedServiceWidget extends StatelessWidget {
   final FeaturedServiceModel serviceModel;
@@ -27,13 +30,13 @@ class FeaturedServiceWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Image with wishlist
+              /// Image banner with favorite icon overlay
               Stack(
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadiusGeometry.circular(8),
-                    child: Image.network(
-                      serviceModel.image,
+                    borderRadius: BorderRadius.circular(8),
+                    child: CachedNetworkImage(
+                      imageUrl: serviceModel.image,
                       height: 128,
                       width: double.infinity,
                       fit: BoxFit.cover,
@@ -51,74 +54,77 @@ class FeaturedServiceWidget extends StatelessWidget {
                 ],
               ),
 
-              // Content
+              /// Service details
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Rating row
+                    /// Rating and category info
                     Row(
                       children: [
-                        const Icon(Icons.star, color: Colors.amber, size: 18),
+                        const Icon(Icons.star, color: Colors.orange, size: 18),
                         const SizedBox(width: 4),
                         Text(
                           serviceModel.rating.toString(),
-                          style: TextStyle(fontWeight: FontWeight.w600),
+                          style: const TextStyle(fontWeight: FontWeight.w600),
                         ),
                         const SizedBox(width: 4),
-                        Text(
+                        const Text(
                           '·',
                           style: TextStyle(
-                            color: AppColors.subColor,
                             fontWeight: FontWeight.w600,
+                            color: AppColors.subColor,
                           ),
                         ),
                         const SizedBox(width: 4),
-                        Text(
+                        const Text(
                           '1 hr',
                           style: TextStyle(color: AppColors.subColor),
                         ),
                         const SizedBox(width: 4),
-                        Text(
+                        const Text(
                           '·',
                           style: TextStyle(
-                            color: AppColors.subColor,
                             fontWeight: FontWeight.w600,
+                            color: AppColors.subColor,
                           ),
                         ),
                         const SizedBox(width: 4),
                         Text(
                           serviceModel.category,
-                          style: TextStyle(color: AppColors.subColor),
+                          style: const TextStyle(color: AppColors.subColor),
                         ),
                       ],
                     ),
 
                     const SizedBox(height: 8),
 
-                    // Title
+                    /// Title
                     Text(
                       serviceModel.title,
-                      style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
                     ),
 
                     const SizedBox(height: 8),
 
-                    // Price
+                    /// Price and discounted price
                     Row(
                       children: [
                         Text(
-                          '\$${serviceModel.price.toString()}',
-                          style: TextStyle(
+                          '\$${serviceModel.price}',
+                          style: const TextStyle(
                             color: AppColors.themeColor2,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          '\$${serviceModel.discountPrice.toString()}',
-                          style: TextStyle(
+                          '\$${serviceModel.discountPrice}',
+                          style: const TextStyle(
                             color: AppColors.subColor,
                             decoration: TextDecoration.lineThrough,
                           ),
@@ -128,25 +134,25 @@ class FeaturedServiceWidget extends StatelessWidget {
 
                     const SizedBox(height: 8),
 
-                    // Divider
-                    Divider(thickness: 1.2, color: AppColors.borderColor),
+                    /// Divider
+                    const Divider(thickness: 1.2, color: AppColors.borderColor),
 
                     const SizedBox(height: 8),
 
-                    // Provider Info
+                    /// Provider avatar and name
                     Row(
                       children: [
                         CircleAvatar(
                           radius: 16,
                           backgroundImage: serviceModel.providerImage != null
-                              ? NetworkImage(serviceModel.providerImage!)
+                              ? CachedNetworkImageProvider(serviceModel.providerImage!)
                               : const AssetImage('assets/placeholder_img.png')
                                     as ImageProvider,
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Text(
                           serviceModel.providerName ?? "Unknown",
-                          style: TextStyle(fontWeight: FontWeight.w600),
+                          style: const TextStyle(fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),

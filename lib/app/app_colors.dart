@@ -1,6 +1,7 @@
 import 'dart:ui';
 
-class AppColors{
+/// An utility class that holds all custom color definitions used throughout the app
+class AppColors {
   static const Color themeColor = Color(0xff3592FC);
   static const Color themeColor2 = Color(0xff175CDE);
   static const Color fillColor = Color(0xff1A428E);

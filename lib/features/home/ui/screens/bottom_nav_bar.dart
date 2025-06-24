@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 import 'package:xgenious_task/features/home/ui/screens/home_screen.dart';
 
+/// A stateful widget that manages bottom navigation between core app sections.
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
 
@@ -13,6 +14,7 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   int selectedIndex = 0;
 
+  /// List of screen widgets associated with each bottom navigation item
   final List<Widget> _screens = [
     HomeScreen(),
     const Center(child: Text('Category')),
@@ -21,16 +23,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
     const Center(child: Text('Profile')),
   ];
 
-  final Color selectedBgColor = const Color(0xFF1E88E5); // Solid blue
+  /// Colors used for selected and unselected states
+  final Color selectedBgColor = const Color(0xFF1E88E5);
   final Color selectedTextColor = Colors.white;
-  final Color unselectedColor = const Color(0xFF0A1D44); // Navy blue
+  final Color unselectedColor = const Color(0xFF0A1D44);
 
+  /// Returns styled text for bottom bar titles based on selection
   TextStyle navTextStyle(int index) => TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w600,
     color: selectedIndex == index ? selectedTextColor : Colors.transparent,
   );
 
+  /// Returns an SVG icon widget with appropriate color filter
   Widget navSvgIcon(String assetPath, int index) {
     return SvgPicture.asset(
       assetPath,
@@ -46,10 +51,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[selectedIndex],
+      body: _screens[selectedIndex], // Show the selected screen
       bottomNavigationBar: StylishBottomBar(
         currentIndex: selectedIndex,
-        onTap: (index) => setState(() => selectedIndex = index),
+        onTap: (index) => setState(() => selectedIndex = index), // Update tab
         option: BubbleBarOptions(
           barStyle: BubbleBarStyle.horizontal,
           bubbleFillStyle: BubbleFillStyle.fill,

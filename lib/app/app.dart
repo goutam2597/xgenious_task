@@ -4,14 +4,16 @@ import 'package:xgenious_task/app/app_theme_data.dart';
 
 import '../features/home/ui/screens/bottom_nav_bar.dart';
 
+/// Entry point widget of the application
 class TaskApp extends StatelessWidget {
   const TaskApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+
       theme: AppThemeData.lightTheme,
-      home: BottomNavBar()
+      home: BottomNavBar(),
     );
   }
 }
