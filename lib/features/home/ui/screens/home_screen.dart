@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    SizedBox(height: 24),
+                    SizedBox(height: 8),
                     /// Category section
                     HeaderWidget(title: 'Categories', onTap: (){}),
                     CategoryWidget(categories: controller.categories),
