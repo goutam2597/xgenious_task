@@ -70,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen>
               const SizedBox(height: 16),
 
               const Text(
-                'Find Your Dream Job',
+                'Find Your Desired Service',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
